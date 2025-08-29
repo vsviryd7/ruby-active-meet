@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_222000) do
     t.index ["favorite_sport_id"], name: "index_users_on_favorite_sport_id"
   end
 
-  add_foreign_key "events", "hosts"
   add_foreign_key "events", "sports"
-  add_foreign_key "users", "favorite_sports"
+  add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "users", "sports", column: "favorite_sport_id"
 end
