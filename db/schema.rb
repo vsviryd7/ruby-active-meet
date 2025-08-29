@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_16_231631) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_222000) do
   create_table "events", force: :cascade do |t|
     t.integer "host_id", null: false
     t.integer "sport_id", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_231631) do
     t.index ["favorite_sport_id"], name: "index_users_on_favorite_sport_id"
   end
 
-  add_foreign_key "events", "hosts"
   add_foreign_key "events", "sports"
-  add_foreign_key "users", "favorite_sports"
+  add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "users", "sports", column: "favorite_sport_id"
 end

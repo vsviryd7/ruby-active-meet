@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[8.0]
       t.string :encrypted_password, null: false
       t.string :address
       t.string :phone_number
-      t.references :favorite_sport, null: false, foreign_key: true
+      t.references :favorite_sport, null: false, foreign_key: { to_table: :sports }
       t.integer :role
 
       t.timestamps
