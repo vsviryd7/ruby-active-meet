@@ -1,0 +1,24 @@
+<div id="<%= dom_id event %>">
+  <p>
+    <strong>Event</strong>
+    <%= event.sport.name %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= "#{event.location}" %>
+  </p>
+
+  <p>
+    <strong>List Player:</strong>
+    <%= link_to "Show enrolled Players",course_enrolled_students_path(course) %>
+  </p>
+  <p>
+    <strong>Max team Players:</strong>
+    <%= event.players_needed %>
+  </p>
+  <p>
+    <strong>Events Description:</strong>
+    <%= event.description %>
+  </p>
+</div>
