@@ -1,2 +1,7 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%= @event.sport.name %> at <%= @event.location %></h1>
+
+<p>Date & Time: <%= @event.event_time.strftime("%B %d, %Y %H:%M") %></p>
+<p>Sport: <%= @event.sport.name %></p>
+<p>Organizer: <%= @event.host.name %></p>
+<p>Players needed: <%= @event.players_needed %></p>
+<p>Description: <%= @event.description %></p>
