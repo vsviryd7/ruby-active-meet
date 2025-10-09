@@ -1,0 +1,8 @@
+<p>Events organized by this user:</p>
+<ul>
+  <% @user.events.each do |event| %>
+    <li>
+      <%= link_to "#{event.sport.name} at #{event.location} (#{event.event_time.strftime("%B %d, %Y %H:%M")})", event_path(event) %>
+    </li>
+  <% end %>
+</ul>

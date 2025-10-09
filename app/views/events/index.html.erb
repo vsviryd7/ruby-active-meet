@@ -1,0 +1,6 @@
+<h1>All Events</h1>
+<ul>
+  <% @events.each do |event| %>
+    <%= link_to "#{event.sport.name} at #{event.location}", event_path(event) %>
+  <% end %>
+</ul>
