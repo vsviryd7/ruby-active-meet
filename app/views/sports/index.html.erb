@@ -1,6 +1,27 @@
 <h1>All Sports</h1>
-<ul>
-  <% @sports.each do |sport| %>
-    <li><%= link_to sport.name, sport_path(sport) %></li>
-  <% end %>
-</ul>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sports.each do |sport| %>
+      <tr>
+        <td><%= sport.name %></td>
+        <td><%= link_to "Show", sport_path(sport) %></td>
+        <td><%= link_to "Edit", edit_sport_path(sport) %></td>
+        <td>
+          <%= button_to "Delete", sport_path(sport),
+                        method: :delete,
+                        data: { turbo_confirm: "Are you sure you want to delete this sport?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to "New Sport", new_sport_path %>

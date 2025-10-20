@@ -1,0 +1,19 @@
+<%= form_with model: sport do |f| %>
+  <% if sport.errors.any? %>
+    <div style="color:red;">
+      <h4><%= pluralize(sport.errors.count, "error") %> prevented saving:</h4>
+      <ul>
+        <% sport.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, required: true %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>

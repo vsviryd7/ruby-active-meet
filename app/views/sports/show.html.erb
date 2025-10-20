@@ -1,8 +1,4 @@
-<p>Events for <%= @sport.name %>:</p>
-<ul>
-  <% @sport.events.each do |event| %>
-    <li>
-      <%= link_to "#{event.location} (#{event.event_time.strftime("%B %d, %Y %H:%M")})", event_path(event) %>
-    </li>
-  <% end %>
-</ul>
+<h1><%= @sport.name %></h1>
+<p><strong>Users with this favorite:</strong> <%= @sport.users.count %></p>
+<%= link_to "Edit", edit_sport_path(@sport) %> |
+<%= link_to "Back to Sports", sports_path %>

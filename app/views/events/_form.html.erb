@@ -1,0 +1,45 @@
+<%= form_with model: event do |f| %>
+  <% if event.errors.any? %>
+    <div style="color:red;">
+      <h4><%= pluralize(event.errors.count, "error") %> prevented saving:</h4>
+      <ul>
+        <% event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :sport_id, "Sport" %><br>
+    <%= f.collection_select :sport_id, Sport.order(:name), :id, :name, prompt: "Select a sport" %>
+  </p>
+
+  <p>
+    <%= f.label :host_id, "Host" %><br>
+    <%= f.collection_select :host_id, User.order(:name), :id, :name, prompt: "Select a host" %>
+    <!-- If you have current_user, set it in controller and remove this input -->
+  </p>
+
+  <p>
+    <%= f.label :location %><br>
+    <%= f.text_field :location, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :event_time, "Event Time" %><br>
+    <%= f.datetime_select :event_time %>
+  </p>
+
+  <p>
+    <%= f.label :players_needed %><br>
+    <%= f.number_field :players_needed, min: 0 %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows: 4 %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>
