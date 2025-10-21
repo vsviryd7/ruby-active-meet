@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Sport.create!(name: "Soccer", description: "Team sport played with a round ball")
+Sport.create!(name: "Basketball", description: "Team sport played with hoops")
+Sport.create!(name: "Tennis", description: "Racket sport played one-on-one or doubles")

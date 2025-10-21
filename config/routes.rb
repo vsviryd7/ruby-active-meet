@@ -7,11 +7,10 @@ Rails.application.routes.draw do
   get "sports/show"
   get "sports/new"
   get "sports/edit"
-resources :events, only: [:index, :show]
-resources :sports, only: [:index, :show]
+resources :events, only: [:index, :show,:new, :create, :edit, :update, :destroy]
+resources :sports
 resources :users, only: [:index, :show]
 
-root "events#index"  # homepage
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -22,6 +21,6 @@ root "events#index"  # homepage
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Homepage
+  root "posts#index"
 end
