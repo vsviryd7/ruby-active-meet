@@ -10,3 +10,6 @@
 Sport.create!(name: "Soccer", description: "Team sport played with a round ball")
 Sport.create!(name: "Basketball", description: "Team sport played with hoops")
 Sport.create!(name: "Tennis", description: "Racket sport played one-on-one or doubles")
+
+User.find_or_create_by!(email: "alice@example.com") { |u| u.name="Alice"; u.password="password123"; u.role=:member }
+User.find_or_create_by!(email: "bob@example.com")   { |u| u.name="Bob";   u.password="password123"; u.role=:organizer }

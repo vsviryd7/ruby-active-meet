@@ -15,11 +15,7 @@
     <%= f.collection_select :sport_id, Sport.order(:name), :id, :name, prompt: "Select a sport" %>
   </p>
 
-  <p>
-    <%= f.label :host_id, "Host" %><br>
-    <%= f.collection_select :host_id, User.order(:name), :id, :name, prompt: "Select a host" %>
-    <!-- If you have current_user, set it in controller and remove this input -->
-  </p>
+  <!-- Removed host field; host is set in controller -->
 
   <p>
     <%= f.label :location %><br>

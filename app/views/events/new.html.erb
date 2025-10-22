@@ -1,3 +1,10 @@
 <h1>New Event</h1>
+<p>
+  Host will be:
+  <% if logged_in? %>
+    <strong><%= current_user.name %></strong>
+  <% else %>
+    <em>Guest</em>
+  <% end %>
+</p>
 <%= render "form", event: @event %>
-<p><%= link_to "Back", events_path %></p>
