@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
-  get "users/index"
-  get "users/show"
-  get "users/new"
-  get "users/edit"
-  get "sports/index"
-  get "sports/show"
-  get "sports/new"
-  get "sports/edit"
+  get    "signup", to: "users#new"
+  post   "signup", to: "users#create"
+  get    "login",  to: "sessions#new"
+  post   "login",  to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+
 resources :events, only: [:index, :show,:new, :create, :edit, :update, :destroy]
 resources :sports
-resources :users, only: [:index, :show]
+resources :users
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -22,5 +20,5 @@ resources :users, only: [:index, :show]
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Homepage
-  root "posts#index"
+  root "events#index"
 end

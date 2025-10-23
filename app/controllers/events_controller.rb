@@ -2,11 +2,10 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.includes(:sport, :host).all
+    @events = Event.includes(:sport, :host).order(event_time: :asc)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @event = Event.new
@@ -14,6 +13,20 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+
+    # Prefer logged-in user if you have sessions set up
+    @event.host = current_user if respond_to?(:current_user) && current_user
+
+    # Fallback: assign or create a Guest user so host is never nil
+    if @event.host.nil?
+      guest = User.find_or_create_by!(email: "guest@activemeet.local") do |u|
+        u.name = "Guest"
+        u.password = SecureRandom.hex(12)
+        u.role = :member
+      end
+      @event.host = guest
+    end
+
     if @event.save
       redirect_to @event, notice: "Event created!"
     else
@@ -21,8 +34,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @event.update(event_params)
@@ -40,10 +52,12 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by(id: params[:id])   # avoid exception
+    redirect_to events_path, alert: "Event not found." unless @event
   end
 
   def event_params
-    params.require(:event).permit(:sport_id, :host_id, :location, :event_time, :players_needed, :description)
+    params.require(:event).permit(:sport_id, :location, :event_time, :players_needed, :description)
+    # 👆 no :host_id — we set host in the controller
   end
 end
