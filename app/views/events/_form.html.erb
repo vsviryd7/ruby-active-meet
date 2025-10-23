@@ -15,8 +15,6 @@
     <%= f.collection_select :sport_id, Sport.order(:name), :id, :name, prompt: "Select a sport" %>
   </p>
 
-  <!-- Removed host field; host is set in controller -->
-
   <p>
     <%= f.label :location %><br>
     <%= f.text_field :location, required: true %>
@@ -24,7 +22,9 @@
 
   <p>
     <%= f.label :event_time, "Event Time" %><br>
-    <%= f.datetime_select :event_time %>
+    <%= f.datetime_select :event_time,
+        ampm: true,          
+        discard_seconds: true %>
   </p>
 
   <p>

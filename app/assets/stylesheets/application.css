@@ -1,10 +1,157 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * This is a manifest file that'll be compiled into application.css (Propshaft).
+ * Keep global styles here or split into partials and import with standard CSS @import if needed.
  */
+
+:root {
+  /* Palette & tokens */
+  --bg:#dcf1f1;
+  --fg:#114743;
+  --muted:#666666;
+  --border:#072927;
+  --card:#e47d42;
+  --soft:#98f1ed;
+
+  --brand:#14848b;
+  --brand-ink:#86e5d9;
+  --danger:#ef4444;
+
+  --radius:10px;
+  --shadow:0 1px 2px rgba(14, 100, 86, 0.06), 0 4px 12px rgba(21, 66, 63, 0.04);
+  --focus:0 0 0 3px rgba(37,99,235,.25);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--fg);
+  background:var(--bg);
+}
+
+/* ======= Layout ======= */
+header{
+  border-bottom:3px solid #5cb5bb; /* brand accent; tweak or remove */
+  background:#abdddd; position:sticky; top:0; z-index:10;
+}
+header nav{
+  max-width:960px; margin:0 auto;
+  display:flex; justify-content:space-between; gap:12px; padding:12px 16px; align-items:center;
+}
+header a{color:var(--fg); text-decoration:none; padding:6px 8px; border-radius:8px}
+header a:hover{background:var(--soft)}
+main{max-width:960px; margin:16px auto; padding:0 12px}
+
+
+.banner {
+  width: 100%;
+  height: 200px;        /* adjust height here */
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* fills the area without stretching */
+  display: block;
+}
+
+
+/* ======= Utilities ======= */
+.container{max-width:960px; margin:0 auto}
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
+.muted{color:var(--muted)}
+.stack > * + *{margin-top:12px}
+.grid{display:grid; gap:12px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:720px){.grid-2{grid-template-columns:1fr}}
+
+/* ======= Buttons & Links ======= */
+button, .btn{
+  appearance:none; border:1px solid transparent; border-radius:10px; padding:10px 14px;
+  background:var(--brand); color:var(--brand-ink); font-weight:600; cursor:pointer; box-shadow:var(--shadow);
+}
+.btn:hover{filter:brightness(0.96)}
+.btn-outline{background:#c6f3f0; color:var(--brand); border-color:var(--brand)}
+.btn-danger{background:var(--danger); color:#82e1e7}
+.btn-muted{background:#0ba096; color:#0f5153}
+a.action{color:var(--brand); text-decoration:none}
+a.action:hover{text-decoration:underline}
+
+/* Make Rails button_to forms display inline in tables/nav */
+form.button_to{display:inline}
+
+/* ======= Forms ======= */
+form label{display:block; font-weight:600; margin-bottom:6px}
+input[type=text], input[type=email], input[type=number], input[type=password], textarea, select{
+  width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:#fff;
+}
+textarea{min-height:110px}
+input:focus, textarea:focus, select:focus{outline:none; box-shadow:var(--focus); border-color:var(--brand)}
+.field{margin-bottom:14px}
+.actions{margin-top:10px}
+.field-error{color:var(--danger); font-size:14px}
+
+/* ======= Flash ======= */
+.flash{margin:16px auto 0; max-width:960px}
+.notice{background:#e8fbef; border:1px solid #0d575a; padding:10px 12px; border-radius:10px}
+.alert{background:#ffefef; border:1px solid #f5b5b5; padding:10px 12px; border-radius:10px}
+
+/* ======= Tables ======= */
+table{
+  width:100%; border-collapse:separate; border-spacing:0; background:#bbe2e4;
+  border:2px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:var(--shadow);
+}
+thead th{background:#459490; text-align:left; padding:12px; font-weight:700; border-bottom:1px solid var(--border)}
+tbody td{padding:12px; border-bottom:1px solid var(--border); vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#d0f1f1}
+td.actions{white-space:nowrap}
+
+/* ======= Headings ======= */
+h1{font-size:28px; margin:8px 0 16px}
+h2{font-size:22px; margin:8px 0 12px}
+
+/* ======= Code blocks (optional) ======= */
+pre, code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+pre{background:#0b1220; color:#e5e7eb; padding:12px; border-radius:10px; overflow:auto}
+
+/* ======= Responsive tweaks ======= */
+@media (max-width:640px){
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .banner {
+    height: 120px;        /* smaller height on phones */
+  }
+}
+
+@media (max-width: 720px) {
+  form .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======= Dark mode (optional) ======= */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b0e14; --fg:#e8e8e8; --muted:#a4a7ae; --border:#1f2430;
+    --card:#0f131a; --soft:#131823;
+  }
+  header{background:#0f131a}
+  a{color:#9ec1ff}
+  .btn-outline{background:transparent; color:#9ec1ff; border-color:#2a3550}
+  table, .card{background:#0f131a; border-color:#1f2430}
+  thead th{background:#111722}
+  tbody tr:hover{background:#111722}
+}

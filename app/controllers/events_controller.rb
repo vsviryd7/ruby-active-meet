@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize_event_owner!, only: [:edit, :update, :destroy]
   def index
     @events = Event.includes(:sport, :host).order(event_time: :asc)
   end
@@ -58,6 +58,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:sport_id, :location, :event_time, :players_needed, :description)
-    # 👆 no :host_id — we set host in the controller
+  end
+
+  def authorize_event_owner!
+    return if current_user&.admin?
+    return if current_user && @event.host_id == current_user.id
+    redirect_to events_path, alert: "You are not allowed to modify this event."
   end
 end

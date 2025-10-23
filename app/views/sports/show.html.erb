@@ -1,4 +1,6 @@
 <h1><%= @sport.name %></h1>
 <p><strong>Users with this favorite:</strong> <%= @sport.users.count %></p>
 <%= link_to "Edit", edit_sport_path(@sport) %> |
-<%= link_to "Back to Sports", sports_path %>
+<div style="margin-bottom: 16px;">
+  <%= link_to "Back to Sports", new_event_path, class: "btn" %>
+</div>

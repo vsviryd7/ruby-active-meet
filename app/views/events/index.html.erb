@@ -16,7 +16,7 @@
       <tr>
         <td><%= event.sport.name %></td>
         <td><%= event.location %></td>
-        <td><%= event.event_time.strftime("%Y-%m-%d %H:%M") if event.event_time %></td>
+        <td><%= event.event_time.strftime("%Y-%m-%d %I:%M %p") if event.event_time %></td>
         <td><%= event.players_needed || "N/A" %></td>
         <td><%= event.host.name %></td>
         <td><%= truncate(event.description, length: 40) %></td>
@@ -32,4 +32,6 @@
 </table>
 
 <br>
-<%= link_to "New Event", new_event_path %>
+<div style="margin-bottom: 16px;">
+  <%= link_to " Create New Event", new_event_path, class: "btn" %>
+</div>
