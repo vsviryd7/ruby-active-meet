@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
    def create
     @user = User.new(user_params)
-    @user.role ||= :member   # default role
+    @user.role ||= :member  
 
     if @user.save
       session[:user_id] = @user.id

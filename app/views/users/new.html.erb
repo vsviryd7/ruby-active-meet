@@ -30,19 +30,19 @@
     <%= f.password_field :password_confirmation, required: true %>
   </p>
 
-  <!-- Optional: pick favorite_sport -->
   <p>
-    <%= f.label :favorite_sport_id, "Favorite sport" %><br>
+    <%= f.label :favorite_sport_id, "Favorite sport(option)" %><br>
     <%= f.collection_select :favorite_sport_id, Sport.order(:name), :id, :name, include_blank: true %>
   </p>
 
-  <!-- Optional: set role during signup (or hide this and set default in controller) -->
   <p>
     <%= f.label :role %><br>
     <%= f.select :role, User.roles.keys.map { |r| [r.titleize, r] } %>
   </p>
 
+<div style="margin-bottom: 16px;">
   <p><%= f.submit "Create Account" %></p>
+</div>  
 <% end %>
 
 <p>Already have an account? <%= link_to "Log in", login_path %></p>

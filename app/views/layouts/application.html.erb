@@ -10,9 +10,6 @@
 
     <%= yield :head %>
 
-    <!-- PWA manifest (optional) -->
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
@@ -22,7 +19,6 @@
   </head>
 
   <body>
-    <!-- Top Nav -->
     <header>
       <nav>
         <div style="display:flex; gap:12px; align-items:center;">
@@ -48,13 +44,11 @@
       <%= image_tag "sports-tools.jpg", alt: "ActiveMeet Banner" %>
     </div>
 
-    <!-- Flash messages -->
     <div class="flash">
       <% if notice %><p class="notice"><%= notice %></p><% end %>
       <% if alert  %><p class="alert"><%= alert  %></p><% end %>
     </div>
 
-    <!-- Page content -->
     <main>
       <%= yield %>
     </main>
